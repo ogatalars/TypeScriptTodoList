@@ -1,5 +1,22 @@
 {
   "devDependencies": {
     "typescript": "^5.0.4"
-  }
+  },
+  "name": "typescriptodolist",
+  "version": "1.0.0",
+  "description": "A typescript training code",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ogatalars/TypeScriptTodoList.git"
+  },
+  "author": "ogatalars",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ogatalars/TypeScriptTodoList/issues"
+  },
+  "homepage": "https://github.com/ogatalars/TypeScriptTodoList#readme"
 }
