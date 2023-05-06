@@ -30,19 +30,33 @@ form?.addEventListener("submit", (event) => {
   input.value = ""
 })
 
+function removeListItem(task: Task) {
+  const index = tasks.findIndex(t => t.id === task.id);
+  if (index !== -1) {
+    tasks.splice(index, 1);
+    saveTasks();
+    const item = list?.querySelector(`[data-id="${task.id}"]`);
+    item?.remove();
+  }
+}
+
 function addListItem(task: Task) {
-  const item = document.createElement("li")
-  const label = document.createElement("label")
-  const checkbox = document.createElement("input")
+  const item = document.createElement("li");
+  const label = document.createElement("label");
+  const checkbox = document.createElement("input");
+  const removeButton = document.createElement("button"); // Add remove button
+  removeButton.textContent = "Remove"; // Set the button text
+  removeButton.addEventListener("click", () => removeListItem(task)); // Add event listener
   checkbox.addEventListener("change", () => {
-    task.completed = checkbox.checked
-    saveTasks()
-  })
-  checkbox.type = "checkbox"
-  checkbox.checked = task.completed
-  label.append(checkbox, task.title)
-  item.append(label)
-  list?.append(item)
+    task.completed = checkbox.checked;
+    saveTasks();
+  });
+  checkbox.type = "checkbox";
+  checkbox.checked = task.completed;
+  label.append(checkbox, task.title);
+  item.append(label, removeButton); // Append the remove button
+  item.dataset.id = task.id; // Set the task ID as a data attribute
+  list?.append(item);
 }
 
 function saveTasks() {
